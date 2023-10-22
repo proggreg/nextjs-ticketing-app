@@ -1,7 +1,37 @@
-const TicketPage = ({params}) => {
-  return (
-    <div>TicketPage ${params.id}</div>
-  )
-}
+import TicketForm from "@/app/(components)/TicketForm";
 
-export default TicketPage
+const getTicketById = async (id) => {
+  try {
+    const res = await fetch(`http://localhost:3000/api/Tickets/${id}`, {
+      cache: "no-store",
+    });
+
+    if (!res.ok) {
+      throw new Error("Failed to get ticket.");
+    }
+
+    return res.json();
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+const TicketPage = async ({ params }) => {
+  const EDITMODE = params.id === "new" ? false : true;
+  let updateTicketData = {};
+  if (EDITMODE) {
+    updateTicketData = await getTicketById(params.id);
+    updateTicketData = updateTicketData.foundTicket;
+  } else {
+    updateTicketData = {
+      _id: "new",
+    };
+  }
+  return (
+    <div>
+      <TicketForm ticket={updateTicketData} />
+    </div>
+  );
+};
+
+export default TicketPage;
