@@ -1,23 +1,30 @@
+"use client";
 import TicketCard from "./(components)/TicketCard";
-import fetchPonyfill from 'fetch-ponyfill';
-const {fetch, Request, Response, Headers} = fetchPonyfill();
-const getTickets = async () => {
-  try {
-    const res = await fetch("http://localhost:3000/api/Tickets", {
-      cache: "no-store",
-    });
+import { useEffect, useState } from "react";
 
-    return res.json();
-  } catch (error) {
-    console.error("Failed to get tickets", error);
-  }
-};
+const Dashboard = () => {
+  const [tickets, setTickets] = useState([]);
+  const [uniqueCategories, setUniqueCategories] = useState([]);
+  useEffect(() => {
+    const getTickets = async () => {
+      try {
+        const res = await fetch("http://localhost:3000/api/Tickets", {
+          cache: "no-store",
+        });
 
-const Dashboard = async () => {
-  const { tickets } = await getTickets();
-  const uniqueCategories = [
-    ...new Set(tickets?.map(({ category }) => category)),
-  ];
+        const { tickets } = await res.json();
+
+        setTickets(tickets);
+        setUniqueCategories([
+          ...new Set(tickets?.map(({ category }) => category)),
+        ]);
+      } catch (error) {
+        console.error("Failed to get tickets", error);
+      }
+    };
+
+    getTickets();
+  }, []);
 
   return (
     <div className="p-5">
