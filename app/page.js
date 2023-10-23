@@ -1,15 +1,12 @@
 import TicketCard from "./(components)/TicketCard";
-
+import Ticket from "../app/(models)/Ticket";
 const getTickets = async () => {
   try {
-    let host = "http://" + process.env.VERCEL_URL || "http://localhost:3000";
-    const res = await fetch(host + "/api/Tickets", {
-      cache: "no-store",
-    });
-
-    return res.json();
-  } catch (error) {
-    console.error("Failed to get tickets", error);
+    let data = await Ticket.find();
+    console.log(data);
+    return {tickets :data};
+  } catch (err) {
+    console.error(err);
   }
 };
 
