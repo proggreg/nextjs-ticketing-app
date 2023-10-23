@@ -8,7 +8,7 @@ const Dashboard = () => {
   useEffect(() => {
     const getTickets = async () => {
       try {
-        const res = await fetch("http://localhost:3000/api/Tickets", {
+        const res = await fetch("/api/Tickets", {
           cache: "no-store",
         });
 
