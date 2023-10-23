@@ -1,7 +1,7 @@
 import TicketForm from "@/app/(components)/TicketForm";
 const getTicketById = async (id) => {
   try {
-    let host = process.env.API || "http:localhost:3000";
+    let host = process.env.VERCEL_URL || "http:localhost:3000";
     const res = await fetch(host + `/api/Tickets/${id}`, {
       cache: "no-store",
     });
