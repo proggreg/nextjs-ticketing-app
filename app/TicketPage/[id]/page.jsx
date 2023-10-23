@@ -1,4 +1,4 @@
-import TicketForm from "@/app/(components)/TicketForm";
+import TicketForm from "../../../app/(components)/TicketForm";
 const getTicketById = async (id) => {
   try {
     let host = process.env.VERCEL_URL || "http:localhost:3000";
