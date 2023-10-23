@@ -1,5 +1,6 @@
 import TicketForm from "@/app/(components)/TicketForm";
-
+import fetchPonyfill from "fetch-ponyfill";
+const { fetch, Request, Response, Headers } = fetchPonyfill(options);
 const getTicketById = async (id) => {
   try {
     const res = await fetch(`http://localhost:3000/api/Tickets/${id}`, {
