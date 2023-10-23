@@ -1,9 +1,8 @@
-"use client";
 import TicketCard from "./(components)/TicketCard";
 
 const getTickets = async () => {
   try {
-    const res = await fetch("http://127.0.0.1:3000/api/Tickets", {
+    const res = await fetch("http://localhost:3000/api/Tickets", {
       cache: "no-store",
     });
 
