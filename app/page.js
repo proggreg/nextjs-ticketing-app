@@ -1,6 +1,6 @@
 import TicketCard from "./(components)/TicketCard";
 import fetchPonyfill from 'fetch-ponyfill';
-const {fetch, Request, Response, Headers} = fetchPonyfill(options);
+const {fetch, Request, Response, Headers} = fetchPonyfill();
 const getTickets = async () => {
   try {
     const res = await fetch("http://localhost:3000/api/Tickets", {

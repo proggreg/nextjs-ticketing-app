@@ -4,7 +4,7 @@ import { faX } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useRouter } from "next/navigation";
 import fetchPonyfill from 'fetch-ponyfill';
-const {fetch, Request, Response, Headers} = fetchPonyfill(options);
+const {fetch, Request, Response, Headers} = fetchPonyfill();
 const DeleteBlock = ({ id }) => {
   const router = useRouter();
   const deleteTicket = async () => {
