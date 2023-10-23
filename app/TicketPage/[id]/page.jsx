@@ -1,16 +1,9 @@
 import TicketForm from "../../../app/(components)/TicketForm";
+import Ticket from "../../(models)/Ticket";
 const getTicketById = async (id) => {
   try {
-    let host = process.env.VERCEL_URL || "http:localhost:3000";
-    const res = await fetch(host + `/api/Tickets/${id}`, {
-      cache: "no-store",
-    });
-
-    if (!res.ok) {
-      throw new Error("Failed to get ticket.");
-    }
-
-    return res.json();
+    let foundTicket = await Ticket.findOne({ _id: id });
+    return { foundTicket };
   } catch (error) {
     console.error(error);
   }
