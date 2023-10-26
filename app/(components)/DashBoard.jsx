@@ -1,7 +1,9 @@
 import TicketCard from "./TicketCard";
 const getTickets = async () => {
   try {
-    const res = await fetch("http://localhost:3000/api/Tickets", {
+    let host = process.env.VERCEL_URL || "http://localhost:3000";
+
+    const res = await fetch(host + "/api/Tickets", {
       cache: "no-store",
     });
 
