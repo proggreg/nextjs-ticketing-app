@@ -1,17 +1,20 @@
 import TicketCard from "./(components)/TicketCard";
-import Ticket from "../app/(models)/Ticket";
 const getTickets = async () => {
   try {
-    let data = await Ticket.find();
-    console.log(data);
-    return {tickets :data};
+    const res = await fetch("http://localhost:3000/api/Tickets", {
+      cache: "no-store",
+    });
+  
+
+    return res.json();;
   } catch (err) {
     console.error(err);
   }
 };
 
 const Dashboard = async () => {
-  const { tickets } = await getTickets();
+  const {tickets} = await getTickets();
+  console.log(tickets);
   const uniqueCategories = [
     ...new Set(tickets?.map(({ category }) => category)),
   ];
